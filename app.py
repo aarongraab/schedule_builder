@@ -61,7 +61,7 @@ hostname = 'localhost'
 port = 8080
 
 # Sets up the database
-db.setup()
+# db.setup()
 
 if __name__ == "__main__":
     run(host=hostname, port=port, debug=True)

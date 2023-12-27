@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Builder</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 30px;
+            text-align: center;
+            width: 16%; /* Adjusted width for each day */
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        td.monday {
+            background-color: lightcoral;
+        }
+        td.tuesday {
+            background-color: lightblue;
+        }
+        td.wednesday {
+            background-color: lightyellow;
+        }
+        td.thursday {
+            background-color: mediumpurple;
+        }
+        td.friday {
+            background-color: lightgreen;
+        }
+        .day-header {
+            background-color: #444;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Schedule Builder</h1>
+
+    <form id="class-form">
+        <label for="class-name">Class Name:</label>
+        <input type="text" id="class-name" required>
+
+        <label for="class-time">Class Time:</label>
+        <select id="class-time" required>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="6:00 PM">6:00 PM</option>
+            <option value="7:00 PM">7:00 PM</option>
+            <option value="8:00 PM">8:00 PM</option>
+            <option value="9:00 PM">9:00 PM</option>
+        </select>
+
+        <label for="class-day">Day of the Week:</label>
+        <select id="class-day" required>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+        </select>
+
+        <button type="button" id="add-class">Add Class</button>
+    </form>
+
+    <script>
+        document.getElementById("add-class").addEventListener("click", function() {
+            const classNameInput = document.getElementById("class-name");
+            const classTimeInput = document.getElementById("class-time");
+            const classDayInput = document.getElementById("class-day");
+
+            const className = classNameInput.value;
+            const classTime = classTimeInput.value;
+            const classDay = classDayInput.value;
+
+            if (className.trim() !== "" && classTime.trim() !== "" && classDay.trim() !== "") {
+                // Find the correct row in the schedule table based on the class time
+                const scheduleTable = document.getElementById("schedule").getElementsByTagName('tbody')[0];
+                const timeRows = scheduleTable.getElementsByTagName('tr');
+                for (let i = 0; i < timeRows.length; i++) {
+                    if (timeRows[i].cells[0].textContent === classTime) {
+                        timeRows[i].querySelector(`td.${classDay}`).textContent = className;
+                        break;
+                    }
+                }
+
+                // Clear the input fields
+                classNameInput.value = "";
+                classTimeInput.value = "";
+                classDayInput.value = "monday"; // Reset the day selection
+            }
+        });
+    </script>
+
+    <table id="schedule">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th class="day-header">Monday</th>
+                <th class="day-header">Tuesday</th>
+                <th class="day-header">Wednesday</th>
+                <th class="day-header">Thursday</th>
+                <th class="day-header">Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Prebuilt empty schedule from 9 AM to 9 PM -->
+            <!-- You can add class entries here -->
+            <tr>
+                <td>9:00 AM - 10:00 AM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>10:00 AM - 11:00 AM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>11:00 AM - 12:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>12:00 PM - 1:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>1:00 PM - 2:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>2:00 PM - 3:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>3:00 PM - 4:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>4:00 PM - 5:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>5:00 PM - 6:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>6:00 PM - 7:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>7:00 PM - 8:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+            <tr>
+                <td>8:00 PM - 9:00 PM</td>
+                <td class="monday"></td>
+                <td class="tuesday"></td>
+                <td class="wednesday"></td>
+                <td class="thursday"></td>
+                <td class="friday"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
